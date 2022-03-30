@@ -1,0 +1,93 @@
+.container{
+    width: 410px;
+    display: flex;
+    flex-direction: row;
+}
+.update-inputs{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.update-buttons{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.button{
+    margin-top: 10px;
+}
+
+.input{
+    margin-top: 10px;
+}
+
+.edit-container{
+    margin-top: 45px;
+    width: 200px;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    margin-left: 10px;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.table-container{    
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+table {
+    width: 100%;
+    border: 1px solid black;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+.head {
+    font-weight: bold;
+}
+  
+  tr:nth-child(even) {background-color: #f2f2f2;}
+
+  .add-buttons{
+      margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+  }
+
+  .myButton{
+      margin: 10px;
+      border-radius: 10px;
+        background: #3498db;
+        color: #ffffff;
+    }
+      
+    .myButton:hover {
+        margin-top: 10px;
+        border-radius: 10px;
+        background: #2980b9;
+        color: #ffffff;
+      }
+
+      .add {
+          width: 70px;
+      }
+
+      .goAnalysis{
+          width: 100px;
+      }
+    
+

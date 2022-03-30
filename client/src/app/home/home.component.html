@@ -1,0 +1,74 @@
+<div class="container">
+
+    <div class="table-container">
+        <button
+        class="myButton add"
+        (click)="goToAdd()">
+    Add
+    </button>
+        <table class="table">
+            <thead>
+                <tr class="head">
+                    <td>Name</td>
+                    <td>Profession</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let person of info" (dblclick)="selected(person)">
+                    <td>{{person.name}}</td>
+                    <td>{{person.profession}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <button
+            class="myButton analysis"
+            (click)="analysis()">
+            Give me new analysis!
+            </button>
+            <div *ngIf="goAnalysis && most && little">
+                <div>The popular: {{most}}</div>
+                <div>The unpopular: {{little}}</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="edit-container" *ngIf="toAdd || selectedPerson">
+        <div class="update-buttons" *ngIf="selectedPerson && !toUpdate">
+            <div class="add-buttons">
+                <button class="button myButton" (click)="goToUpdate()">Update</button>
+                <button class="button myButton" (click)="remove()">Remove</button>
+            </div>
+            <button class="button myButton" (click)="cancel()">Cancel</button>
+        </div>
+        <div class="update-inputs" *ngIf="toUpdate">
+            <input
+                class="input"
+                placeholder="Give new name"
+                [(ngModel)]="selectedPerson.name">
+            <input
+                class="input"
+                placeholder="Give new profession"
+                [(ngModel)]="selectedPerson.profession">
+            <div class="add-buttons">
+                <button class="add-button myButton" (click)="update()">Update!</button>
+                <button class="add-button myButton" (click)="cancel()">cancel</button>
+            </div>
+        </div>
+       
+        <div class="update-inputs" *ngIf="toAdd && !selectedPerson">
+            <input
+                class="input"
+                placeholder="Give new name"
+                [(ngModel)]="newPerson.name">
+            <input
+                class="input"
+                placeholder="Give new profession"
+                [(ngModel)]="newPerson.profession">
+            <div class="add-buttons">
+                <button class="add-button myButton" (click)="add()">Add!</button>
+                <button class="add-button myButton" (click)="cancel()">cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
