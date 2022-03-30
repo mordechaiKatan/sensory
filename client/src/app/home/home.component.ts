@@ -25,7 +25,6 @@ export class HomeComponent implements OnInit {
   toAdd: boolean=false;
   goAnalysis: boolean=false;
   most: any="";
-  little: any="";
 
   ngOnInit(): void {
     this.getInfo();
@@ -121,23 +120,13 @@ export class HomeComponent implements OnInit {
     let obj: any={};
     let max: string='';
     let maxi: number=0;
-    let obj1: any={};
-    let min: string='';
-    let mini: number=100;
     for(let k of professions) {
     if(obj[k]) obj[k]++; else obj[k]=1;
     if(maxi < obj[k]) { max=k; maxi=obj[k] }
-    if(obj1[k]) obj1[k]++; else obj1[k]=1;
-    if(mini > obj1[k]) { min=k; mini=obj1[k] }
-    if (maxi!==mini && maxi>1){
-      this.most=max;
-      this.little=min
-      console.log(this.little)
+    if (maxi>1){this.most=max
     } else {
       this.most="";
-      this.little=""
-    }
-    
+    }    
     }
     
     this.goAnalysis=true;

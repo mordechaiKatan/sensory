@@ -26,9 +26,8 @@
             (click)="analysis()">
             Give me new analysis!
             </button>
-            <div *ngIf="goAnalysis && most && little">
-                <div>The popular: {{most}}</div>
-                <div>The unpopular: {{little}}</div>
+            <div *ngIf="goAnalysis && most">
+                <div>The popular profession: {{most}}</div>
             </div>
         </div>
     </div>
