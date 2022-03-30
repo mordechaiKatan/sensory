@@ -27,7 +27,7 @@
             Give me new analysis!
             </button>
             <div *ngIf="goAnalysis && most">
-                <div>The popular profession: {{most}}</div>
+                <div>Popular profession: {{most}}</div>
             </div>
         </div>
     </div>
@@ -69,5 +69,6 @@
                 <button class="add-button myButton" (click)="cancel()">cancel</button>
             </div>
         </div>
+        <div style="color:red" *ngIf="message">{{message}}</div>
     </div>
 </div>

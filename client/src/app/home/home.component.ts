@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
   toAdd: boolean=false;
   goAnalysis: boolean=false;
   most: any="";
+  message: string = "";
 
   ngOnInit(): void {
     this.getInfo();
@@ -104,14 +105,20 @@ export class HomeComponent implements OnInit {
   }
   add=()=>{
     if (this.newPerson && this.newPerson.name && this.newPerson.profession) {
+      let names=this.info.map((e)=>e.name)
+      if (!names.includes(this.newPerson.name)){
       this.addPerson(this.newPerson);
-      this.cancel()
-    }
+      this.cancel();
+      } else {
+        this.message="The name is allready exist"
+      }
+    } else {this.message="Fill in all the details"}
   }
   cancel=()=>{
     this.toAdd=false;
     this.toUpdate=false;
     this.selectedPerson=null;
+    this.message="";
   }
 
   analysis = ()=>{
