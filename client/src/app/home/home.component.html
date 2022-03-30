@@ -33,10 +33,10 @@
     </div>
     
     <div class="edit-container" *ngIf="toAdd || selectedPerson">
-        <div class="update-buttons" *ngIf="selectedPerson && !toUpdate">
+        <div class="update-buttons" *ngIf="selectedPerson && !toUpdate && !toRemove">
             <div class="add-buttons">
                 <button class="button myButton" (click)="goToUpdate()">Update</button>
-                <button class="button myButton" (click)="remove()">Remove</button>
+                <button class="button myButton" (click)="goToRemove()">Remove</button>
             </div>
             <button class="button myButton" (click)="cancel()">Cancel</button>
         </div>
@@ -66,6 +66,14 @@
                 [(ngModel)]="newPerson.profession">
             <div class="add-buttons">
                 <button class="add-button myButton" (click)="add()">Add!</button>
+                <button class="add-button myButton" (click)="cancel()">cancel</button>
+            </div>
+        </div>
+
+        <div class="update-inputs" *ngIf="toRemove">
+            <div>Are you sure you want to delete {{selectedPerson.name}}?</div>
+            <div class="add-buttons">
+                <button class="add-button myButton" (click)="remove()">Remove!</button>
                 <button class="add-button myButton" (click)="cancel()">cancel</button>
             </div>
         </div>

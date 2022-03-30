@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   newPerson:person={name:"",profession:""}
   toUpdate: boolean=false;
   toAdd: boolean=false;
+  toRemove: boolean=false;
   goAnalysis: boolean=false;
   most: any="";
   message: string = "";
@@ -87,10 +88,13 @@ export class HomeComponent implements OnInit {
     this.selectedPerson={...person};
     this.index=this.info.findIndex((e)=>e.name===this.selectedPerson.name);
   }
+
+  goToRemove=()=>this.toRemove=true;
   remove=()=>{
     if (this.index>-1){
     this.removePerson(this.selectedPerson);
-    this.selectedPerson=null
+    this.selectedPerson=null;
+    this.toRemove=false;
   }}
   goToUpdate=()=>{    
     this.toUpdate=true;
@@ -116,7 +120,8 @@ export class HomeComponent implements OnInit {
   }
   cancel=()=>{
     this.toAdd=false;
-    this.toUpdate=false;
+    this.toUpdate=false;    
+    this.toRemove=false;
     this.selectedPerson=null;
     this.message="";
   }
