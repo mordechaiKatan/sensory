@@ -114,7 +114,7 @@ export class HomeComponent implements OnInit {
       this.addPerson(this.newPerson);
       this.cancel();
       } else {
-        this.message="The name is allready exist"
+        this.message="The name is already exist"
       }
     } else {this.message="Fill in all the details"}
   }
