@@ -16,7 +16,6 @@ http.listen(port, () => {
   });
 
   app.get("/getInfo", async (req, res) => {
-    console.log("getttt")
     res.send(info);      
   })
 
