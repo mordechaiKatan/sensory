@@ -5,35 +5,70 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const path = require('path');
 const info= require("./info.json");
+const { port } = require('./config');
+const connect = require('./db');
+const User= require('./models/User');
 
 app.use(cors());
 app.use(bodyParser.json({extended: true}));
 app.use('/', express.static('client/dist'));
 
-const port=8000
-http.listen(port, () => {
+connect().then(() => {
+  console.log('MONGO DB is connected');
+  http.listen(port, () => {
     console.log('Server is up with express on port: ', port);
   });
+});
 
   app.get("/getInfo", async (req, res) => {
+    const info=await User.find().exec();
     res.send(info);      
   })
 
   app.post("/add", async (req, res) => {
-    let person=req.body.data;
-    info.push(person);
+    let user=req.body.person;
+    let newUser=new User (user);
+    await newUser.save();
+    let info = await User.find().exec();
     res.send(info);      
   })
 
-  app.post("/update", async (req, res) => {
-    let {person,index}=req.body;
-    info.splice(index,1,person);
+  app.put("/update/:id", async (req, res) => {
+    let id=req.params.id;
+    let user=req.body.person;
+    console.log(user);
+    await User.findOneAndUpdate(
+      {_id:id},
+      {name:user.name,profession:user.profession}
+    ).exec();
+    let info= await User.find().exec();
+    console.log(info[0]);
     res.send(info);      
   })
 
-  app.post("/remove", async (req, res) => {
-    let person=req.body.data;
-    let index = info.findIndex((e)=>e.name===person.name);
-    info.splice(index,1);
+  app.delete("/remove/:id", async (req, res) => {
+    let id=req.params.id;
+    await User.findOneAndDelete({_id:id});
+    let info=await User.find().exec();
     res.send(info);      
   })
+
+//   let users = [
+//     {"name":"Avi", "profession": "carpenter"},
+//     {"name":"Roni", "profession": "driver"},
+//     {"name":"Dani", "profession": "cook"},
+//     {"name":"Ori", "profession": "cook"},
+//     {"name":"David", "profession": "driver"},
+//     {"name":"Sara", "profession": "cook"},
+//     {"name":"Hadas", "profession": "teacher"},
+//     {"name":"Nachman", "profession": "praying"}
+//   ]  
+//   User.deleteMany({}).exec().then(()=>{
+//   User.collection.insertMany(users, function (err, docs) {
+//           if (err){ 
+//               return console.error(err);
+//           } else {
+//             console.log("Multiple documents inserted to Collection");
+//           }
+//                 });
+// })

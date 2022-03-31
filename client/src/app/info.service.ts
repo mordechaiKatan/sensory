@@ -21,23 +21,23 @@ export class InfoService {
 
   
   add(person: Person) {
-    return this.http.post(`http://localhost:8000/Add`, { data: person }).pipe(
+    return this.http.post(`http://localhost:8000/Add`, { person: person }).pipe(
       map((res: any) => {
         return res;
       })
     );
   }
 
-  update(person: Person, index: number) {
-    return this.http.post(`http://localhost:8000/update`, { person, index }).pipe(
+  update(id: any, person: Person) {
+    return this.http.put(`http://localhost:8000/update/${id}`, { person}).pipe(
       map((res: any) => {
         return res;
       })
     );
   }
 
-  remove(person: Person) {
-    return this.http.post(`http://localhost:8000/remove`, { data: person }).pipe(
+  remove(id: any) {
+    return this.http.delete(`http://localhost:8000/remove/${id}`).pipe(
       map((res: any) => {
         return res;
       })

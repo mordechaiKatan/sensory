@@ -46,6 +46,7 @@ export class HomeComponent implements OnInit {
   }
 
   addPerson(person: Person):void {
+    console.log(person);
     this.InfoService.add(person)
     .subscribe(
       (data: Person[]) => {
@@ -58,8 +59,8 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  removePerson(person: Person):void {
-    this.InfoService.remove(person)
+  removePerson(id:any):void {
+    this.InfoService.remove(id)
     .subscribe(
       (data: Person[]) => {
         this.info = data;
@@ -71,8 +72,8 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  updatePerson(person: Person, personIndex: number):void {
-    this.InfoService.update(person,personIndex)
+  updatePerson(id:any,person: Person):void {
+    this.InfoService.update(id,person)
     .subscribe(
       (data: Person[]) => {
         this.info = data;
@@ -92,7 +93,7 @@ export class HomeComponent implements OnInit {
   goToRemove=()=>this.toRemove=true;
   remove=()=>{
     if (this.index>-1){
-    this.removePerson(this.selectedPerson);
+    this.removePerson(this.selectedPerson._id);
     this.selectedPerson=null;
     this.toRemove=false;
   }}
@@ -100,7 +101,7 @@ export class HomeComponent implements OnInit {
     this.toUpdate=true;
   }
   update=()=>{
-    this.info.splice(this.index,1,this.selectedPerson);
+    this.updatePerson(this.selectedPerson._id,this.selectedPerson);
     this.selectedPerson=null;
     this.toUpdate=false;
   }
