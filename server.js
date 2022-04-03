@@ -11,7 +11,7 @@ const User= require('./models/User');
 
 app.use(cors());
 app.use(bodyParser.json({extended: true}));
-app.use('/', express.static(path.join(__dirname, 'client/dist')));
+// app.use('/', express.static(path.join(__dirname, 'client/dist')));
 app.use(express.static(path.join(__dirname, 'client/dist')));
 
 connect().then(() => {
