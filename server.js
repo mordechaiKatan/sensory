@@ -11,7 +11,7 @@ const User= require('./models/User');
 
 app.use(cors());
 app.use(bodyParser.json({extended: true}));
-app.use('/', express.static('client/dist'));
+app.use('/', express.static('client/dist/sensory'));
 // app.use(express.static(path.join(__dirname, 'client/dist')));
 
 
@@ -22,9 +22,9 @@ connect().then(() => {
   });
 });
 
-app.get('*', (request, response) => {
-	response.sendFile(path.join(__dirname, 'client/dist', 'index.html'));
-});
+// app.get('*', (request, response) => {
+// 	response.sendFile(path.join(__dirname, 'client/dist', 'index.html'));
+// });
 
   app.get("/getInfo", async (req, res) => {
     const info=await User.find().exec();
