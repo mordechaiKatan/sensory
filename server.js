@@ -11,14 +11,19 @@ const User= require('./models/User');
 
 app.use(cors());
 app.use(bodyParser.json({extended: true}));
-// app.use('/', express.static(path.join(__dirname, 'client/dist')));
-app.use(express.static(path.join(__dirname, 'client/dist')));
+app.use('/', express.static('client/dist'));
+// app.use(express.static(path.join(__dirname, 'client/dist')));
+
 
 connect().then(() => {
   console.log('MONGO DB is connected');
   http.listen(port, () => {
     console.log('Server is up with express on port: ', port);
   });
+});
+
+app.get('*', (request, response) => {
+	response.sendFile(path.join(__dirname, 'client/dist', 'index.html'));
 });
 
   app.get("/getInfo", async (req, res) => {

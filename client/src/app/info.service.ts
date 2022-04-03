@@ -21,7 +21,7 @@ export class InfoService {
 
   
   add(person: Person) {
-    return this.http.post(`/Add`, { person: person }).pipe(
+    return this.http.post(`/add`, { person: person }).pipe(
       map((res: any) => {
         return res;
       })
