@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Person} from "../person";
 import {InfoService} from "../info.service";
+import { isForStatement } from 'typescript';
 
 interface person {
   name: string,
@@ -26,18 +27,22 @@ export class HomeComponent implements OnInit {
   toRemove: boolean=false;
   goAnalysis: boolean=false;
   most: any="";
+  mostMessage: string="";
+  little: any="";
+  littleMessage: string="";
   message: string = "";
 
-  ngOnInit(): void {
+  ngOnInit (): void {
     this.getInfo();
+    this.analysis()
   }
   
   getInfo(): void {
     this.InfoService.getAll()
     .subscribe(
       (data: Person[]) => {
-        this.info = data;
-        console.log(this.info) 
+        this.info = [...data];
+        this.analysis()
       },
       (err) => {
         console.log(err)
@@ -50,8 +55,8 @@ export class HomeComponent implements OnInit {
     this.InfoService.add(person)
     .subscribe(
       (data: Person[]) => {
-        this.info = data;
-        console.log(this.info) 
+        this.info = [...data];
+        this.analysis()
       },
       (err) => {
         console.log(err)
@@ -63,8 +68,8 @@ export class HomeComponent implements OnInit {
     this.InfoService.remove(id)
     .subscribe(
       (data: Person[]) => {
-        this.info = data;
-        console.log(this.info) 
+        this.info = [...data];
+        this.analysis()
       },
       (err) => {
         console.log(err)
@@ -76,8 +81,8 @@ export class HomeComponent implements OnInit {
     this.InfoService.update(id,person)
     .subscribe(
       (data: Person[]) => {
-        this.info = data;
-        console.log(this.info) 
+        this.info = [...data];
+        this.analysis()
       },
       (err) => {
         console.log(err)
@@ -128,21 +133,27 @@ export class HomeComponent implements OnInit {
   }
 
   analysis = ()=>{
+    this.little="";
+    this.most="";
     if (this.info.length>0){
     let professions=this.info.map((e)=>e.profession)
     let obj: any={};
     let max: string='';
-    let maxi: number=0;
+    let min: string='';
     for(let k of professions) {
-    if(obj[k]) obj[k]++; else obj[k]=1;
-    if(maxi < obj[k]) { max=k; maxi=obj[k] }
-    if (maxi>1){this.most=max
-    } else {
-      this.most="";
+    if(obj[k]) {obj[k]++} else {obj[k]=1}}
+    let newArr=Object.entries(obj);
+    let sort=newArr.sort((a:any,b:any)=>a[1]-b[1]);
+    console.log(sort);
+    if (sort[sort.length-1][1]!==sort[sort.length-2][1])
+    {max=sort[sort.length-1][0]} else {this.mostMessage="There is more than one favorite"}
+    if (sort[0][1]!==sort[1][1])
+    {min=sort[0][0]}
+    if (min) {this.little=min} else {this.littleMessage="There is more than one favorite"};
+    console.log(min)
+    if (max) {this.most=max} else {this.most=""};
     }    
-    }
-    
     this.goAnalysis=true;
   }
-  }  
+
 }

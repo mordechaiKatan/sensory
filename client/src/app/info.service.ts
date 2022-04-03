@@ -12,6 +12,7 @@ export class InfoService {
   constructor(private http : HttpClient) {}
   
    getAll() {
+    // return this.http.get('http://localhost:8000/getInfo').pipe(
     return this.http.get('/getInfo').pipe(
       map((res: any) => {
         return res
@@ -21,6 +22,7 @@ export class InfoService {
 
   
   add(person: Person) {
+    // return this.http.post(`http://localhost:8000/add`, { person: person }).pipe(
     return this.http.post(`/add`, { person: person }).pipe(
       map((res: any) => {
         return res;
@@ -29,6 +31,7 @@ export class InfoService {
   }
 
   update(id: any, person: Person) {
+    // return this.http.put(`http://localhost:8000/update/${id}`, { person}).pipe(
     return this.http.put(`/update/${id}`, { person}).pipe(
       map((res: any) => {
         return res;
@@ -37,6 +40,7 @@ export class InfoService {
   }
 
   remove(id: any) {
+    // return this.http.delete(`http://localhost:8000/remove/${id}`).pipe(
     return this.http.delete(`/remove/${id}`).pipe(
       map((res: any) => {
         return res;

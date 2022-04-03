@@ -20,13 +20,17 @@
         </table>
         
         <div>
-            <button
-            class="myButton analysis"
-            (click)="analysis()">
-            Give me new analysis!
-            </button>
-            <div *ngIf="goAnalysis && most">
-                <div>Popular profession: {{most}}</div>
+            <div class="analysis-bar" *ngIf="goAnalysis">
+                <div>
+                Popular profession:                    
+                    <div *ngIf="most"  style="font-weight: bold">{{most}}</div>
+                    <div *ngIf="!most" style="color: green">{{mostMessage}}</div>
+                </div>
+                <div>
+                Unpopular profession: 
+                    <div *ngIf="little"  style="font-weight: bold">{{little}}</div>
+                    <div *ngIf="!little"  style="color: green">{{littleMessage}}</div>
+                </div> 
             </div>
         </div>
     </div>

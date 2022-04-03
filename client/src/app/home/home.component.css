@@ -90,5 +90,11 @@ table {
       .goAnalysis{
           width: 100px;
       }
+
+    .analysis-bar{
+        text-align: center;
+        border: blue 2px ;
+        border-style: dashed;
+    }
     
 
