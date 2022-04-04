@@ -2,7 +2,6 @@
     padding: 20px;
     display: flex;
     flex-direction: row; 
-    /* /* background-color: white; */
 }
 .inputs{
     margin-top: 10px;
@@ -107,7 +106,8 @@ table {
     }
 /* 
     .modal {
-        min-height: 100vw;
+        position: absolute;
+        min-width: 100vw;
         background-color: rgb(0,0,0,0.5);
         z-index: 1;
     } */
