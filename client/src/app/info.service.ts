@@ -11,10 +11,12 @@ import {environment} from '../environments/environment'
 export class InfoService {
 
   constructor(private http : HttpClient) {}
+
+  URL='http://localhost:8000';
+  // URL=""
   
    getAll() {
-    // return this.http.get('http://localhost:8000/getInfo').pipe(
-    return this.http.get('/getInfo').pipe(
+    return this.http.get(`${this.URL}/getInfo`).pipe(
       map((res: any) => {
         return res
       })
@@ -23,8 +25,7 @@ export class InfoService {
 
   
   add(person: Person) {
-    // return this.http.post(`http://localhost:8000/add`, { person: person }).pipe(
-    return this.http.post(`/add`, { person: person }).pipe(
+    return this.http.post(`${this.URL}/add`, { person: person }).pipe(
       map((res: any) => {
         return res;
       })
@@ -32,8 +33,7 @@ export class InfoService {
   }
 
   update(id: any, person: Person) {
-    // return this.http.put(`http://localhost:8000/update/${id}`, { person: person}).pipe(
-    return this.http.put(`/update/${id}`, {person: person}).pipe(
+    return this.http.put(`${this.URL}/update/${id}`, {person: person}).pipe(
       map((res: any) => {
         return res;
       })
@@ -41,8 +41,7 @@ export class InfoService {
   }
 
   remove(id: any) {
-    // return this.http.delete(`http://localhost:8000/remove/${id}`).pipe(
-    return this.http.delete(`/remove/${id}`).pipe(
+    return this.http.delete(`${this.URL}/remove/${id}`).pipe(
       map((res: any) => {
         return res;
       })

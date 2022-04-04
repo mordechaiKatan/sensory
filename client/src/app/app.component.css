@@ -7,4 +7,5 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  min-height: calc(100vh - 16px);
 }
