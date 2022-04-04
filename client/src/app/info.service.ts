@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Person } from './person';
+import {environment} from '../environments/environment'
 
 
 @Injectable({
@@ -31,8 +32,8 @@ export class InfoService {
   }
 
   update(id: any, person: Person) {
-    // return this.http.put(`http://localhost:8000/update/${id}`, { person}).pipe(
-    return this.http.put(`/update/${id}`, { person}).pipe(
+    // return this.http.put(`http://localhost:8000/update/${id}`, { person: person}).pipe(
+    return this.http.put(`/update/${id}`, {person: person}).pipe(
       map((res: any) => {
         return res;
       })

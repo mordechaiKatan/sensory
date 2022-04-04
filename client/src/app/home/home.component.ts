@@ -65,6 +65,7 @@ export class HomeComponent implements OnInit {
   }
 
   removePerson(id:any):void {
+    console.log(id);
     this.InfoService.remove(id)
     .subscribe(
       (data: Person[]) => {

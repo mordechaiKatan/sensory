@@ -1,0 +1,10 @@
+.screen{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;  
+    background: url("../assets/yam.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
