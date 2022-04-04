@@ -12,8 +12,8 @@ export class InfoService {
 
   constructor(private http : HttpClient) {}
 
-  URL='http://localhost:8000';
-  // URL=""
+  // URL='http://localhost:8000';
+  URL=""
   
    getAll() {
     return this.http.get(`${this.URL}/getInfo`).pipe(
